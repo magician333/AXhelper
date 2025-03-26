@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AXhelper</title>
+
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="emotion">情绪判断</button>
+      <button class="tab-btn" data-tab="summary">内容总结</button>
+      <button class="tab-btn" data-tab="compose">回复拟写</button>
+      <button class="tab-btn" data-tab="optimize">内容优化</button>
+    </div>
+
+    <div class="content-area">
+      <div class="tab-content active" id="emotion-tab">
+        <div class="tab-header">
+          <h3>情绪分析</h3>
+          <button class="action-btn" id="emotionBtn">开始分析</button>
+        </div>
+        <div class="result-container" id="emotionResult">
+          <p class="placeholder">点击按钮分析当前页面的情绪倾向</p>
+        </div>
+      </div>
+
+      <div class="tab-content" id="summary-tab" style="display:none">
+        <div class="tab-header">
+          <h3>内容总结</h3>
+          <button class="action-btn" id="summaryBtn">开始总结</button>
+        </div>
+        <div class="result-container" id="summaryResult">
+          <p class="placeholder">点击按钮生成当前页面的内容摘要</p>
+        </div>
+      </div>
+
+      <div class="tab-content" id="compose-tab" style="display:none">
+        <div class="tab-header">
+          <h3>回复拟写</h3>
+          <button class="action-btn" id="composeBtn">拟写回复</button>
+        </div>
+        <div class="result-container" id="composeResult">
+          <p class="placeholder">点击按钮基于当前页面内容拟写回复</p>
+        </div>
+      </div>
+
+      <div class="tab-content" id="optimize-tab" style="display:none">
+        <div class="tab-header">
+          <h3>内容优化</h3>
+          <button class="action-btn" id="optimizeBtn">优化内容</button>
+        </div>
+        <div class="result-container" id="optimizeResult">
+          <p class="placeholder">点击按钮优化当前页面的内容表达</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="info">
+    Model:<span id="model"></span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>

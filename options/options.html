@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXhelper Settings</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+
+<body>
+    <div class="settings-container">
+        <h1>AXhelper Settings</h1>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="ai">AI Provider</button>
+            <button class="tab-btn" data-tab="kb">Knowledge Base</button>
+        </div>
+
+        <div class="tab-content active" id="ai-tab">
+            <form id="aiSettingsForm">
+                <div class="form-group">
+                    <label for="aiProvider">AI Provider</label>
+                    <select id="aiProvider" name="aiProvider">
+                        <option value="ollama">Ollama</option>
+                        <option value="deepseek">DeepSeek</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="baseUrl">Base URL</label>
+                    <input type="text" id="baseUrl" name="baseUrl" placeholder="https://api.example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="apiKey">API Key</label>
+                    <input type="password" id="apiKey" name="apiKey" placeholder="Enter your API key">
+                </div>
+
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <select id="model" name="model" disabled>
+                        <!-- <option value="">Loading models...</option> -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" id="testAiConnection" class="test-btn">Test Connection</button>
+                    <span id="aiTestResult" class="test-result"></span>
+                </div>
+
+                <h3>Prompt Templates</h3>
+
+                <div class="form-group">
+                    <label for="emotionPrompt">Emotion Analysis Prompt</label>
+                    <textarea id="emotionPrompt" name="emotionPrompt" rows="3">【指令】
+        作为专业客服情绪分析专家，请严格按以下步骤处理客户信件：
+        1. 深度分析文本的语气、用词强度和情感表达
+        2. 从以下9个级别判断情绪强度：
+        - 极度负面
+        - 高度负面
+        - 中度负面
+        - 轻微负面
+        - 中立
+        - 轻微积极
+        - 中度积极
+        - 高度积极
+        - 极度积极
+        3. 输出格式（仅限括号内内容）：
+        [情绪强度]（例：[高度负面]）
+        
+        【要求】
+        - 禁止解释分析过程
+        - 忽略非情感性内容
+        - 识别复合情绪时取主导情绪
+        - 对讽刺/反语进行语境推断
+        - 考虑文化差异表达
+        - 商业沟通场景优先原则
+        - 置信度需达90%以上才输出
+        
+        【输入开始】
+        {text}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="summaryPrompt">Content Summary Prompt</label>
+                    <textarea id="summaryPrompt" name="summaryPrompt" rows="3">【指令】
+                        作为资深客户服务分析专员，请按以下框架处理邮件内容：
+                        1. 提取核心信息要素：
+                        - 问题类型（技术/售后/咨询/投诉）
+                        - 客户核心诉求（20字内精准概括）
+                        - 情绪状态（参照九级情绪体系）
+                        - 紧急程度（⭐×1-5）
+                        - 关联业务信息（账号/订单/产品编号）
+                        
+                        2. 总结规范：
+                        - 保留原始事实数据
+                        - 排除主观推测内容
+                        - 用「>>」符号分隔要素
+                        - 中文书面语表达
+                        - 忽略问候/签名等格式内容
+                        
+                        【输出格式】
+                        [问题类型] >> [诉求摘要] >> [情绪强度] >> [紧急度] >> [关键编号]
+                        （例：投诉 >> 路由器频繁断网 >> 高度负面 >> ⭐⭐⭐⭐ >> ODR20240715X）
+                        
+                        【特别要求】
+                        - 涉及多个问题时自动拆分条目
+                        - 金额/日期等数字信息必须保留
+                        - 模糊表述需标注[需澄清]
+                        - 保密信息替换为[已脱敏]
+                    【输入开始】
+                    {text}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="composePrompt">Reply Composition Prompt</label>
+                    <textarea id="composePrompt" name="composePrompt"
+                        rows="3">你是一名专业的售后客服，收到一封客户来信，来信的具体内容为 {text}，请根据内容进行回信的拟写</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="optimizePrompt">Reply Optimization Prompt</label>
+                    <textarea id="optimizePrompt" name="optimizePrompt"
+                        rows="3">你是一名专业的售后客服，收到一封客户来信，来信的具体内容为 {text1}，现在有一封回信内容为{text2}，请根据来信内容对回信进行优化</textarea>
+                </div>
+
+                <button type="submit" class="save-btn">Save Settings</button>
+            </form>
+        </div>
+
+        <div class="tab-content" id="kb-tab">
+            <form id="kbSettingsForm">
+                <div class="form-group">
+                    <label for="kbProvider">Knowledge Base Provider</label>
+                    <select id="kbProvider" name="kbProvider">
+                        <option value="ragflow">Ragflow</option>
+                        <option value="dify">Dify</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="kbBaseUrl">Base URL</label>
+                    <input type="text" id="kbBaseUrl" name="kbBaseUrl" placeholder="https://kb.example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="kbApiKey">API Key</label>
+                    <input type="password" id="kbApiKey" name="kbApiKey" placeholder="Enter your KB API key">
+                </div>
+
+                <div class="form-group">
+                    <label for="kbKnID">Knowledge ID</label>
+                    <input type="password" id="kbKnID" name="kbKnID" placeholder="Enter your KB ID">
+                </div>
+
+                <div class="form-group">
+                    <button type="button" id="testKbConnection" class="test-btn">Test Connection</button>
+                    <span id="kbTestResult" class="test-result"></span>
+                </div>
+
+                <button type="submit" class="save-btn">Save Settings</button>
+            </form>
+        </div>
+    </div>
+    <script src="options.js"></script>
+</body>
+
+</html>

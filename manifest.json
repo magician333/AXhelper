@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "AXhelper",
+  "version": "1.0",
+  "description": "AI-powered assistant for content analysis and response generation",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["*://*/*", "http://localhost:11434/*"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
