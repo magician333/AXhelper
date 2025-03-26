@@ -54,6 +54,7 @@ async function loadSettings() {
     "kbProvider",
     "kbBaseUrl",
     "kbApiKey",
+    "kbKnID",
   ]);
   if (settings.models)
     settings.models.forEach((model) => {
@@ -89,6 +90,8 @@ async function loadSettings() {
     document.getElementById("kbBaseUrl").value = settings.kbBaseUrl;
   if (settings.kbApiKey)
     document.getElementById("kbApiKey").value = settings.kbApiKey;
+  if (settings.kbKnID)
+    document.getElementById("kbKnID").value = settings.kbKnID;
 }
 
 async function saveAiSettings(e) {

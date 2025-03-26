@@ -253,7 +253,6 @@ document.addEventListener("DOMContentLoaded", () => {
       throw new Error("Missing required settings");
     }
     try {
-      const prompt = composePrompt.replace("{text}", text);
       const apiUrl = kbBaseUrl.endsWith("/")
         ? `${kbBaseUrl}api/v1/retrieval`
         : `${kbBaseUrl}/api/v1/retrieval`;
